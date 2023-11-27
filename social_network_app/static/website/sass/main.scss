@@ -1,0 +1,71 @@
+$--color-background: #f6f4f3;
+$--color-gray: #ccc;
+
+*,
+*::after,
+*::before {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $--color-background;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 40rem;
+}
+button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: $--color-gray;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  :hover{
+    filter: brightness(90%);
+  }
+}
+
+.message-form__author,
+.message-form__text {
+  display: block;
+  width: 100%;
+  outline: none;
+  padding: 0.5rem;
+  resize: none;
+  border: 1px solid $--color-gray;
+}
+
+.message-form__submit {
+  display: block;
+  width: 100%;
+  outline: none;
+  padding: 0.5rem;
+  background-color: $--color-gray;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  :hover{
+    filter: brightness(90%);
+  }
+}
+.message {
+  border: 1px solid $--color-gray;
+  border-top: 0;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+.message__author {
+  font-size: 1rem;
+}
+.message__created_at {
+  color: $--color-gray;
+}
+.message__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

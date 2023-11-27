@@ -1,0 +1,73 @@
+/* line 4, static/website/sass/main.scss */
+*,
+*::after,
+*::before {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-sizing: border-box; }
+
+/* line 11, static/website/sass/main.scss */
+body {
+  background-color: #f6f4f3; }
+
+/* line 15, static/website/sass/main.scss */
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 40rem; }
+
+/* line 20, static/website/sass/main.scss */
+button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #ccc;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none; }
+  /* line 27, static/website/sass/main.scss */
+  button :hover {
+    filter: brightness(90%); }
+
+/* line 32, static/website/sass/main.scss */
+.message-form__author,
+.message-form__text {
+  display: block;
+  width: 100%;
+  outline: none;
+  padding: 0.5rem;
+  resize: none;
+  border: 1px solid #ccc; }
+
+/* line 42, static/website/sass/main.scss */
+.message-form__submit {
+  display: block;
+  width: 100%;
+  outline: none;
+  padding: 0.5rem;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+  font-weight: bold; }
+  /* line 51, static/website/sass/main.scss */
+  .message-form__submit :hover {
+    filter: brightness(90%); }
+
+/* line 55, static/website/sass/main.scss */
+.message {
+  border: 1px solid #ccc;
+  border-top: 0;
+  padding: 0.5rem;
+  border-radius: 0.5rem; }
+
+/* line 61, static/website/sass/main.scss */
+.message__author {
+  font-size: 1rem; }
+
+/* line 64, static/website/sass/main.scss */
+.message__created_at {
+  color: #ccc; }
+
+/* line 67, static/website/sass/main.scss */
+.message__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }

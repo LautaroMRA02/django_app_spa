@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+from decouple import config
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,19 +38,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_network_app',
     'compressor',
+    'channels',
+    'website',
 ]
 # COPRESSOR 
-
+COMPRESS_ENABLED = True
 COMPRESS_PRECOMPILERS = (    
+    # ('text/coffeescript', 'coffee --compile --stdio'),
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 STATICFILES_FINDERS = ( 
     'django.contrib.staticfiles.finders.FileSystemFinder',  
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',    
     'compressor.finders.CompressorFinder',
-) 
-
+    # 'compressor.js.JsCompressor'
+)
+COMPRESS_JS_FILTERS = [
+     'compressor.filters.jsmin.CleanCSSFilter'
+]
+COMPRESS_CSS_FILTERS = [
+     'compressor.filters.cssmin.CSSMinFilter',
+]
+#COMPRESS_FILTERS = {'css': ['compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.rCSSMinFilter'], 'js': ['compressor.filters.jsmin.CalmjsFilter']}
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 COMPRESS_ROOT = STATIC_ROOT
@@ -70,7 +82,7 @@ ROOT_URLCONF = 'social_network_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,16 +98,29 @@ TEMPLATES = [
 WSGI_APPLICATION = 'social_network_app.wsgi.application'
 ASGI_APPLICATION = 'social_network_app.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Backend para pruebas (en memoria)
+        # 'BACKEND': 'asgi_redis.RedisChannelLayer',  # Para usar Redis como backend (requiere asgi_redis)
+        # 'CONFIG': {
+        #     'hosts': [('127.0.0.1', 6379)],  # Configuración de Redis
+        # },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_HOST'),
+        'PORT': config('DATABASE_PORT'),
     }
 }
+
 
 
 # Password validation
